@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class promController extends Controller
 {
@@ -13,7 +14,11 @@ class promController extends Controller
      */
     public function index()
     {
-       return view('promocion');
+
+       
+        $query = DB::table('usuario')->get();
+        return $query;
+       //return view('promocion');
     }
 
     /**
@@ -34,7 +39,10 @@ class promController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        dd($request->all());
+        $db = DB::table('usuario')->get();
+        return $db;
     }
 
     /**
