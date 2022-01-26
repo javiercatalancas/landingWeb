@@ -23,21 +23,36 @@
         </div>
     </div>
 
+   
+
     <div class="container">
         <div class="row">
             <div class="col-sm">
                 {{--  INSERTAR PRIMERA PARTE FORMULARIO  --}}
                 <p>Columna form 1</p>
-                <form>
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                    </ul>
+                    </div>
+                    @endif
+                <form method="POST" action="{{ url('promocion') }}">
                     <div class="form-group">
                       <label for="name">Nombre(*)</label>
-                      <input type="text" class="form-control" id="name" aria-describedby="" placeholder="Nombre">
-                      <small id="validation" class="form-text text-muted">Aquí montamos la respuesta de la validación del formulario</small>
+                      <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name" placeholder="Nombre" value="{{old ('name')}}" required>
+                      @error('name')
+                      <small id="validation" class="form-text text-muted">{{$message}}</small>
+                      @enderror
                     </div>
                     <div class="form-group">
                       <label for="phone">Teléfono</label>
-                      <input type="number" class="form-control" id="phone" placeholder="Teléfono">
-                      <small id="validation" class="form-text text-muted">Aquí montamos la respuesta de la validación del formulario</small>
+                      <input type="tel" class="form-control @error('phone') is-invalid @enderror" name="phone" id="phone" placeholder="Teléfono" value="{{old ('phone')}}" >
+                      @error('phone')
+                      <small id="validation" class="form-text text-muted">{{$message}}</small>
+                      @enderror
                     </div>
                     <div class="form-group">
                         <label for="vehicleclass">Tipo de vehículo(*)</label>
@@ -64,13 +79,17 @@
                 <p>Columna form 2</p>
                 <div class="form-group">
                     <label for="lastname">Apellidos(*)</label>
-                    <input type="text" class="form-control" id="lastname" aria-describedby="" placeholder="Apellidos">
-                    <small id="validation" class="form-text text-muted">Aquí montamos la respuesta de la validación del formulario</small>
+                    <input type="text" class="form-control @error('lastname') is-invalid @enderror" id="lastname" value="{{old ('lastname')}}" placeholder="Apellidos" required>
+                    @error('lastname')
+                    <small id="validation" class="form-text text-muted">{{$message}}</small>
+                    @enderror
                   </div>
                 <div class="form-group">
                       <label for="email">Email(*)</label>
-                      <input type="email" class="form-control" id="email" aria-describedby="" placeholder="Email">
-                      <small id="validation" class="form-text text-muted">Aquí montamos la respuesta de la validación del formulario</small>
+                      <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" value="{{old ('lastname')}}" placeholder="Email" required>
+                      @error('email')
+                      <small id="validation" class="form-text text-muted">{{$message}}</small>
+                      @enderror
                 </div>
                 
                 <div class="form-group">
@@ -94,7 +113,10 @@
         </div>
         <div class="row">
          <div class="col-sm">
-            <button type="button" class="btn btn-primary">Enviar</button>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+           
+
+            </form>
          </div>
             
         </div>

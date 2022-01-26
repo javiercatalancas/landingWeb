@@ -33,8 +33,7 @@ class promController extends Controller
     public function create()
     {
         //
-        $request = DB::table('usuario')->get();
-        return $request;
+        
     }
 
     /**
@@ -46,7 +45,19 @@ class promController extends Controller
     public function store(Request $request)
     {
 
-       // dd($request->all());
+       $rules = [
+           'name' => 'required|string|min:3|max:30',
+           'lastname' =>'required|string|max:30',
+           'phone' =>'numeric|regex:/^[\d]{0,}(.[\d]{2})?$/|nullable',
+       ];
+
+       $messages = [
+        'required'=>'El campo :attribute es obligatorio.'
+        
+    ];
+
+    $validatedData = $request->validate($rules, $messages);
+        return "Funcionando";
         
     }
 
