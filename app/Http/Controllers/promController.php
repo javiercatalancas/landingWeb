@@ -52,11 +52,19 @@ class promController extends Controller
        ];
 
        $messages = [
-        'required'=>'El campo :attribute es obligatorio.'
+        'required'=>'El campo :attribute es obligatorio.',
+        'name.string'=>'Debes escribir texto',
+        'phone.numeric'=>'Debes introducir un número de teléfono correcto',
+        'phone.regex'=>'Debes introducir un número de teléfono correcto',
+        'max'=>'Número máximo de caracteres',
+        'min'=>'Número mínimo de caracteres'
         
     ];
 
     $validatedData = $request->validate($rules, $messages);
+
+    // Si está todo OK, debe redireccionar a la pantalla de gracias
+    // Si está todo ok, debe insertar en la bbdd el contenido del formulario
         return "Funcionando";
         
     }
