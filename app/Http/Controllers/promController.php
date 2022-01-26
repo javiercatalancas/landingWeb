@@ -16,9 +16,13 @@ class promController extends Controller
     {
 
        
-        $query = DB::table('usuario')->get();
-        return $query;
-       //return view('promocion');
+        $turismo_comercial = DB::table('turismo_comercial')->pluck('nombre');
+        $vehiculo = DB::table('vehiculo')->pluck('nombre');
+       
+       return view('promocion', [
+           'turismo_comercial' => $turismo_comercial, 
+           'vehiculo' => $vehiculo
+       ]);
     }
 
     /**
@@ -29,6 +33,8 @@ class promController extends Controller
     public function create()
     {
         //
+        $request = DB::table('usuario')->get();
+        return $request;
     }
 
     /**
@@ -40,9 +46,8 @@ class promController extends Controller
     public function store(Request $request)
     {
 
-        dd($request->all());
-        $db = DB::table('usuario')->get();
-        return $db;
+       // dd($request->all());
+        
     }
 
     /**
