@@ -24,9 +24,9 @@
     </div>
     
 {{--  SPINNER  --}}
-    <div class="spinner" role="status">
+    {{-- <div class="spinner" role="status">
       <span class="sr-only">Loading...</span>
-    </div>
+    </div> --}}
 
    
 
@@ -35,7 +35,7 @@
             <div class="col-sm">
                 {{--  INSERTAR PRIMERA PARTE FORMULARIO  --}}
                 <p>Columna form 1</p>
-                <form method="POST" action="{{ url('promocion') }}">
+                <form method="POST" id="formulario" action="{{ url('promocion') }}">
                     <div class="form-group">
                       <label for="name">Nombre(*)</label>
                       <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name" placeholder="Nombre" value="{{old ('name')}}" required>
@@ -102,8 +102,10 @@
         </div>
         <div class="row">
          <div class="col-sm">
-            <button type="submit" class="btn btn-primary">Enviar</button>
-           
+          <div class="modal">
+          </div>
+            <button type="submit" id="button" class="btn btn-primary">Enviar</button>
+            
             </form>
          </div>
             
