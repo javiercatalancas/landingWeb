@@ -24,7 +24,7 @@
     </div>
     
 {{--  SPINNER  --}}
-    <div class="spinner-border" role="status">
+    <div class="spinner" role="status">
       <span class="sr-only">Loading...</span>
     </div>
 
@@ -102,7 +102,7 @@
         </div>
         <div class="row">
          <div class="col-sm">
-            <button type="submit" class="btn btn-primary" onclick="send();">Enviar</button>
+            <button type="submit" class="btn btn-primary">Enviar</button>
            
             </form>
          </div>
