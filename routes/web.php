@@ -22,3 +22,4 @@ Route::resource('promocion','promController');
 
 
 
+

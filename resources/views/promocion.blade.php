@@ -30,15 +30,6 @@
             <div class="col-sm">
                 {{--  INSERTAR PRIMERA PARTE FORMULARIO  --}}
                 <p>Columna form 1</p>
-                @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                    @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                    @endforeach
-                    </ul>
-                    </div>
-                    @endif
                 <form method="POST" action="{{ url('promocion') }}">
                     <div class="form-group">
                       <label for="name">Nombre(*)</label>
@@ -56,21 +47,20 @@
                     </div>
                     <div class="form-group">
                         <label for="vehicleclass">Tipo de vehículo(*)</label>
-                        <select class="form-control" id="vehicleclass">
+                        <select class="form-control" id="vehicleclass" name="vehicleclass">
                          <?php
                          foreach ($vehiculo as $v){
-                             echo "<option>$v</option>";
+                             echo "<option value ='$v' name='$v' id='$v'>$v</option>";
                          }
-                         
                          ?>
                         </select>
                       </div>
                     <div class="form-group">
                         <label for="call">Preferencia de llamada(*)</label>
-                        <select class="form-control" id="call">
-                          <option>Mañana</option>
-                          <option>Tarde</option>
-                          <option>Noche</option>
+                        <select class="form-control" id="call" name="call">
+                          <option value="morning" name="mañana" id="mañana">Mañana</option>
+                          <option value="tarde" name="tarde" id="tarde">Tarde</option>
+                          <option value="noche" name="noche" id="noche">Noche</option>
                         </select>
                     </div>  
             </div>
@@ -79,14 +69,14 @@
                 <p>Columna form 2</p>
                 <div class="form-group">
                     <label for="lastname">Apellidos(*)</label>
-                    <input type="text" class="form-control @error('lastname') is-invalid @enderror" id="lastname" value="{{old ('lastname')}}" placeholder="Apellidos" required>
+                    <input type="text" class="form-control @error('lastname') is-invalid @enderror" name='lastname' id="lastname" placeholder="Apellidos" value="{{old ('lastname')}}" required>
                     @error('lastname')
                     <small id="validation" class="form-text text-muted">{{$message}}</small>
                     @enderror
                   </div>
                 <div class="form-group">
                       <label for="email">Email(*)</label>
-                      <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" value="{{old ('lastname')}}" placeholder="Email" required>
+                      <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="email"  placeholder="Email" value="{{old ('email')}}" required>
                       @error('email')
                       <small id="validation" class="form-text text-muted">{{$message}}</small>
                       @enderror
@@ -94,28 +84,21 @@
                 
                 <div class="form-group">
                     <label for="vehiclemodel">Vehículo(*)</label>
-                    <select class="form-control" id="vehiclemodel">
+                    <select class="form-control" id="vehiclemodel" name="vehiclemodel">
                       <?php
                       
                       foreach($turismo_comercial as $q){
-                        echo "<option>$q</option>";
+                        echo "<option value='$q' name='$q' value='$q'>$q</option>";
                       }
-                          
-                      
-                      
                       ?>
                     </select>
                 </div>  
-
-
             </div>
-            
         </div>
         <div class="row">
          <div class="col-sm">
             <button type="submit" class="btn btn-primary">Enviar</button>
            
-
             </form>
          </div>
             

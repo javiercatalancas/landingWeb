@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\usuarioPromocion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\StoreBlogPost;
 
 class promController extends Controller
 {
@@ -42,30 +44,26 @@ class promController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreBlogPost $request)
     {
+        //Validamos
+        $validatedData = $request->validated;
+        // Insertar en la BBDD
+        $usuarioPromocion = new usuarioPromocion();
+        $usuarioPromocion-> name =$request->name;
+        $usuarioPromocion-> phone =$request->phone;
+        $usuarioPromocion-> vehicleclass =$request->vehicleclass;
+        $usuarioPromocion-> call =$request->call;
+        $usuarioPromocion-> lastname =$request->lastname;
+        $usuarioPromocion-> email =$request->email;
+        $usuarioPromocion-> vehiclemodel =$request->vehiclemodel;
+        $usuarioPromocion->save();
 
-       $rules = [
-           'name' => 'required|string|min:3|max:30',
-           'lastname' =>'required|string|max:30',
-           'phone' =>'numeric|regex:/^[\d]{0,}(.[\d]{2})?$/|nullable',
-       ];
 
-       $messages = [
-        'required'=>'El campo :attribute es obligatorio.',
-        'name.string'=>'Debes escribir texto',
-        'phone.numeric'=>'Debes introducir un número de teléfono correcto',
-        'phone.regex'=>'Debes introducir un número de teléfono correcto',
-        'max'=>'Número máximo de caracteres',
-        'min'=>'Número mínimo de caracteres'
-        
-    ];
+        // Si está todo OK, debe redireccionar a la pantalla de gracias
+    
 
-    $validatedData = $request->validate($rules, $messages);
-
-    // Si está todo OK, debe redireccionar a la pantalla de gracias
-    // Si está todo ok, debe insertar en la bbdd el contenido del formulario
-        return "Funcionando";
+        return $request->all();
         
     }
 
