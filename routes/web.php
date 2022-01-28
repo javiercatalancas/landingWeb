@@ -15,9 +15,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'promController@index');
-Route::resource('promocion','promController');
+//Route::resource('promocion','promController');
+Route::get('/promocion', 'promController@index');
+Route::post('/promocion', 'promController@store');
 Route::post('clasevehiculo','claseVehiculoController@clasevehiculo');
-//Route::get('promocion/gracias-promocion', 'promController@redirect');
-//Route::get('promocion/{preferencia?}')->name('preferencia');
+Route::get('/promocion/gracias-promocion', 'redirectController@redirect');
+//Route::post('/promocion/gracias-promocion', 'promController@store');
 
 

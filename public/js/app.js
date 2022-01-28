@@ -16,7 +16,6 @@ function modeloVehiculo(){
     beforeSend: function () {
       $("#vehiclemodel").html("Procesando la petición");
 },
-
     success:  function (response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
       $("#vehiclemodel").html(response);
 }

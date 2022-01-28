@@ -1,3 +1,16 @@
+Instalación del proyecto:
+
+1.- Descargar del repositorio
+2.- Copiar el proyecto en la carpeta de la red localidad
+3.- Dentro de la ruta del proyecto lanzar el comando "composer update"
+(esto actualizará el proyecto con las carpetas que git no ha sincronizado, concretamente la carpeta vendor)
+4.- Configurar la BBDD en el archivo .env (en la carpeta Database hay un modelo exportable)
+5.- Configurar los datos del proveedor de email
+
+¡Gracias por la oportunidad!
+
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">

@@ -6,6 +6,7 @@ use App\usuarioPromocion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreBlogPost;
+use Illuminate\Support\Facades\Mail;
 
 class promController extends Controller
 {
@@ -23,9 +24,9 @@ class promController extends Controller
          
        ]);
 
-    
-
     }
+
+    
 
     /**
      * Show the form for creating a new resource.
@@ -59,14 +60,20 @@ class promController extends Controller
         $usuarioPromocion-> vehiclemodel =$request->vehiclemodel;
         $usuarioPromocion->save();
 
+        if($usuarioPromocion){
+            $destino = $usuarioPromocion->email;
+            $asunto = "Formulario Dapda";
+            Mail::send('gracias', $request->all(), function($message) use($asunto, $destino){
+                $message->from('javier.catalan@escuelaestech.es', "Javier Catalán");
+                $message->subject($asunto);
+                $message->to($destino);
+            });
+        }
         // Si está todo OK, debe redireccionar a la pantalla de gracias
         return view("gracias");
     }
 
-    public function redirect(){
-        return redirect('promocion')->with('error','No ha rellenado el formulario');
-    }
-
+    
     /**
      * Display the specified resource.
      *
