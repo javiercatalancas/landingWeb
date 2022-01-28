@@ -16,13 +16,9 @@ class promController extends Controller
      */
     public function index()
     {
-        //$vehiculo = DB::table('vehiculo')->pluck('nombre', 'id');
         $vehiculo = DB::table('vehiculo')->get();
-
-        //->pluck('id');
-        //$id = DB::table('vehiculo')->pluck('id');
-        //$turismo_comercial = DB::table('turismo_comercial')->pluck('nombre');
-       return view('promocion', [
+        
+        return view('promocion', [
            'vehiculo' => $vehiculo
          
        ]);
@@ -64,10 +60,11 @@ class promController extends Controller
         $usuarioPromocion->save();
 
         // Si está todo OK, debe redireccionar a la pantalla de gracias
-    
+        return view("gracias");
+    }
 
-        return $request->all();
-        
+    public function redirect(){
+        return redirect('promocion')->with('error','No ha rellenado el formulario');
     }
 
     /**

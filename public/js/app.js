@@ -3,6 +3,25 @@ function spinner(){
   $('.modal').modal('show');
 }
 
+function modeloVehiculo(){
+  // Reocojo la id del tipo de vehículo
+  var id = $('#vehicleclass').val();
+  //Revisar que la id se toma correctamente
+  console.log(id);
+  // Mando por post esa id a la ruta: 
+  $.ajax({
+    data:{"id" : id},
+    type: 'POST',
+    url:'clasevehiculo',
+    beforeSend: function () {
+      $("#vehiclemodel").html("Procesando la petición");
+},
+
+    success:  function (response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
+      $("#vehiclemodel").html(response);
+}
+  })
+}
 
 
 

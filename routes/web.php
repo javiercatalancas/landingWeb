@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\claseVehiculoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,14 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-
+Route::get('/', 'promController@index');
 Route::resource('promocion','promController');
-Route::get('promocion/{id}', 'promController@index')->name('id');
-Route::get('promocion/{preferencia?}')->name('preferencia');
-
+Route::post('clasevehiculo','claseVehiculoController@clasevehiculo');
+//Route::get('promocion/gracias-promocion', 'promController@redirect');
+//Route::get('promocion/{preferencia?}')->name('preferencia');
 
 
