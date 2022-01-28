@@ -1,3 +1,11 @@
+function spinner(){
+  //$('#button').hide();
+  $('.modal').modal('show');
+}
+
+
+
+
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};

@@ -27,6 +27,7 @@ class StoreBlogPost extends FormRequest
             'name' => 'required|string|min:3|max:30',
             'lastname' =>'required|string|max:30',
             'phone' =>'numeric|regex:/^[\d]{0,}(.[\d]{2})?$/|nullable',
+            'email' =>'required|email'
         ];
     }
 
@@ -37,6 +38,10 @@ class StoreBlogPost extends FormRequest
         return [
             'lastname.required'=>'El campo Apellidos es obligatorio.',
             'name.string'=>'Debes escribir texto',
+            'name.required'=>'El campo Nombre es obligatorio',
+            'email.required' =>'Introduce un email',
+            'email.email'=>'Introduce un email correcto',
+            'email.string'=>'Introduce un email correcto',
             'phone.numeric'=>'Debes introducir un número de teléfono correcto',
             'phone.regex'=>'Debes introducir un número de teléfono correcto',
             'max'=>'Número máximo de caracteres',

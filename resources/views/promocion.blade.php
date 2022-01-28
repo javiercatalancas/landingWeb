@@ -8,27 +8,31 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet" type="text/css" />
     {{--  RESPONSIVE  --}}
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+    
+   
+
     <title>Promoción</title>
 </head>
 <body>
     <div class="container">
         <div class="row">
           <div class="col-sm">
-            <?php
-                // En la variable $query me vienen los datos de la consulta a la DB
-               // echo $query;
-            ?>
            <img src="{{ asset('img/mokka.jpg')}}" class="img-fluid"/>
           </div>
         </div>
     </div>
-    
-{{--  SPINNER  --}}
-    {{-- <div class="spinner" role="status">
-      <span class="sr-only">Loading...</span>
-    </div> --}}
 
-   
+ {{--  Spinner de carga Bootstrap con modal  --}}
+  <div class="modal fade bd-example-modal-lg" data-backdrop="static" data-keyboard="false" tabindex="-1">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content" style="width: 48px">
+            <<div class="loader"></div>
+        </div>
+    </div>
+  </div>
 
     <div class="container">
         <div class="row">
@@ -38,11 +42,21 @@
                 <form method="POST" id="formulario" action="{{ url('promocion') }}">
                     <div class="form-group">
                       <label for="name">Nombre(*)</label>
-                      <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name" placeholder="Nombre" value="{{old ('name')}}" required>
+                      <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name" placeholder="Nombre" value="{{old ('name')}}" >
                       @error('name')
                       <small id="validation" class="form-text text-muted">{{$message}}</small>
                       @enderror
                     </div>
+
+                    <div class="form-group">
+                      <label for="lastname">Apellidos(*)</label>
+                      <input type="text" class="form-control @error('lastname') is-invalid @enderror" name='lastname' id="lastname" placeholder="Apellidos" value="{{old ('lastname')}}" >
+                      @error('lastname')
+                      <small id="validation" class="form-text text-muted">{{$message}}</small>
+                      @enderror
+                    </div>
+
+
                     <div class="form-group">
                       <label for="phone">Teléfono</label>
                       <input type="tel" class="form-control @error('phone') is-invalid @enderror" name="phone" id="phone" placeholder="Teléfono" value="{{old ('phone')}}" >
@@ -52,17 +66,19 @@
                     </div>
                     <div class="form-group">
                         <label for="vehicleclass">Tipo de vehículo(*)</label>
-                        <select class="form-control" id="vehicleclass" name="vehicleclass">
+                        <select class="form-select" id="vehicleclass" name="vehicleclass">
+                          <option selected disabled hidden value=''></option>
                          <?php
                          foreach ($vehiculo as $v){
-                             echo "<option value ='$v' name='$v' id='$v'>$v</option>";
+                             echo "<option value ='$v->id' name='$v->nombre' id='$v->id'>$v->nombre</option>";
+                             
                          }
                          ?>
                         </select>
                       </div>
                     <div class="form-group">
                         <label for="call">Preferencia de llamada(*)</label>
-                        <select class="form-control" id="call" name="call">
+                        <select class="form-select" id="call" name="call">
                           <option value="morning" name="mañana" id="mañana">Mañana</option>
                           <option value="tarde" name="tarde" id="tarde">Tarde</option>
                           <option value="noche" name="noche" id="noche">Noche</option>
@@ -72,16 +88,10 @@
             <div class="col-sm">
                 {{--  INSERTAR SEGUNDA PARTE FORMULARIO  --}}
                 <p>Columna form 2</p>
-                <div class="form-group">
-                    <label for="lastname">Apellidos(*)</label>
-                    <input type="text" class="form-control @error('lastname') is-invalid @enderror" name='lastname' id="lastname" placeholder="Apellidos" value="{{old ('lastname')}}" required>
-                    @error('lastname')
-                    <small id="validation" class="form-text text-muted">{{$message}}</small>
-                    @enderror
-                  </div>
+               
                 <div class="form-group">
                       <label for="email">Email(*)</label>
-                      <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="email"  placeholder="Email" value="{{old ('email')}}" required>
+                      <input type="text" class="form-control @error('email') is-invalid @enderror" name="email" id="email"  placeholder="Email" value="{{old ('email')}}" >
                       @error('email')
                       <small id="validation" class="form-text text-muted">{{$message}}</small>
                       @enderror
@@ -89,13 +99,13 @@
                 
                 <div class="form-group">
                     <label for="vehiclemodel">Vehículo(*)</label>
-                    <select class="form-control" id="vehiclemodel" name="vehiclemodel">
-                      <?php
+                    <select class="form-select" id="vehiclemodel" name="vehiclemodel">
+                     {{--   <?php
                       
                       foreach($turismo_comercial as $q){
                         echo "<option value='$q' name='$q' value='$q'>$q</option>";
                       }
-                      ?>
+                      ?>  --}}
                     </select>
                 </div>  
             </div>
@@ -104,7 +114,7 @@
          <div class="col-sm">
           <div class="modal">
           </div>
-            <button type="submit" id="button" class="btn btn-primary">Enviar</button>
+            <button type="submit" id="button" class="btn btn-primary" onclick="spinner();">Enviar</button>
             
             </form>
          </div>
@@ -116,6 +126,7 @@
 
     {{--  JAVASCRIPT  --}}
     <script src="{{ mix('js/app.js') }}" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 </body>
 </html>

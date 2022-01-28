@@ -10,5 +10,6 @@ class usuarioPromocion extends Model
     protected $fillable = [
         'name', 'phone', 'vehicleclass', 'call', 'lastname', 'email', 'vehiclemodel'
     ];
-
 }
+
+

@@ -16,15 +16,19 @@ class promController extends Controller
      */
     public function index()
     {
+        //$vehiculo = DB::table('vehiculo')->pluck('nombre', 'id');
+        $vehiculo = DB::table('vehiculo')->get();
 
-       
-        $turismo_comercial = DB::table('turismo_comercial')->pluck('nombre');
-        $vehiculo = DB::table('vehiculo')->pluck('nombre');
-       
+        //->pluck('id');
+        //$id = DB::table('vehiculo')->pluck('id');
+        //$turismo_comercial = DB::table('turismo_comercial')->pluck('nombre');
        return view('promocion', [
-           'turismo_comercial' => $turismo_comercial, 
            'vehiculo' => $vehiculo
+         
        ]);
+
+    
+
     }
 
     /**
@@ -58,7 +62,6 @@ class promController extends Controller
         $usuarioPromocion-> email =$request->email;
         $usuarioPromocion-> vehiclemodel =$request->vehiclemodel;
         $usuarioPromocion->save();
-
 
         // Si está todo OK, debe redireccionar a la pantalla de gracias
     

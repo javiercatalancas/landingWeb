@@ -19,7 +19,8 @@ Route::get('/', function () {
 
 
 Route::resource('promocion','promController');
-
+Route::get('promocion/{id}', 'promController@index')->name('id');
+Route::get('promocion/{preferencia?}')->name('preferencia');
 
 
 
